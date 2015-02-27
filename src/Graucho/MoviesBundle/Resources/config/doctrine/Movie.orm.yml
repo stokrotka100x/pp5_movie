@@ -1,0 +1,30 @@
+Graucho\MoviesBundle\Entity\Movie:
+    type:  entity
+    table: movie
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        value:
+            type: integer
+        img:
+            type: string
+            length: 255
+        gerne:
+            type: integer
+        source:
+            type: string
+            length: 255
+        opis:
+            type: string
+            length: 255
+        aktorzy:
+            type: string
+            length: 255
+        data:
+            type: date

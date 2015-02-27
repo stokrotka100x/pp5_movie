@@ -1,0 +1,39 @@
+{% extends "GrauchoMoviesBundle::layout.html.twig" %}
+
+{% block menu %}
+	<ul class="list-group">
+		<li class="list-group-item"><a href="{{path('graucho_movies_homepage')}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+
+	{% if is_granted('ROLE_USER') %}
+		<li class="list-group-item"><a href="{{path('graucho_movies_recenzja_index')}}"><span class="glyphicon glyphicon-comment"></span> Recenzje</a></li>
+	{% endif %}
+		<li class="list-group-item"><a href="{{path('graucho_movies_koszyk_index')}}"><span class="glyphicon glyphicon-shopping-cart"></span> Koszyk {{app.session.get('kosz')}}</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 1, 'cat': 'Akcji'})}}">1. Akcji</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 2, 'cat': 'Biograficzne'})}}">2. Biograficzne</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 3, 'cat': 'Dramat'})}}">3. Dramat</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 4, 'cat': 'Komedie'})}}">4. Komedie</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 5, 'cat': 'Kryminalne'})}}">5. Kryminalne</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 6, 'cat': 'Seriale'})}}">6. Seriale</a></li>
+		<li class="list-group-item"><a href="{{path('graucho_movies_movies', {'c': 7, 'cat': 'SF'})}}">7. SF</a></li>
+		
+	</ul>			
+{% endblock %}
+
+{% block crede%}
+
+	{% if is_granted('ROLE_USER') %}
+		<div class="row">
+			<p>
+				Jesteś zalogowany jako {{app.user.username}}. 
+				<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
+			</p>
+		</div>
+	{% else %}
+		<p>
+			Nie jesteś zalogowany - 
+			<a href="{{path('fos_user_security_login')}}" class="btn btn-primary">Zaloguj</a>
+			Jeśli nie masz konta - <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
+		</p>
+	{% endif %}
+	
+{% endblock%}

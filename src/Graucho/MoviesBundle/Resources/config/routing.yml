@@ -1,0 +1,43 @@
+graucho_movies_homepage:
+    path:     /
+    defaults: { _controller: GrauchoMoviesBundle:Default:index }
+
+graucho_movies_movies:
+    path:     /category{c}/{cat}
+    defaults: { _controller: GrauchoMoviesBundle:Default:movies }
+graucho_movies_movie:
+    path:     /movie/{id}
+    defaults: { _controller: GrauchoMoviesBundle:Default:movie }
+graucho_movies_recenzja_add:
+    path:     /recenzja{id}/add
+    defaults: { _controller: GrauchoMoviesBundle:Recenzja:add }
+
+graucho_movies_recenzja_index:
+    path:     /recenzja/{movie}
+    defaults: 
+        _controller: GrauchoMoviesBundle:Recenzja:index
+        movie: 1
+graucho_movies_recenzja_show:
+    path:     /recenzja/show/{id}
+    defaults: { _controller: GrauchoMoviesBundle:Recenzja:show }
+
+graucho_movies_koszyk_add:
+    path:     /koszyk/add{id}
+    defaults: { _controller: GrauchoMoviesBundle:Koszyk:add }
+
+graucho_movies_koszyk_remove:
+    path:     /koszyk/rem{id}
+    defaults: { _controller: GrauchoMoviesBundle:Koszyk:remove }
+
+graucho_movies_koszyk_pay:
+    path:     /{id}/pay
+    defaults: { _controller: GrauchoMoviesBundle:Koszyk:pay }
+
+graucho_movies_koszyk_index:
+    path:     /koszyk
+    defaults: 
+        _controller: GrauchoMoviesBundle:Koszyk:index
+        movie: 1
+graucho_movies_koszyk_show:
+    path:     /koszyk/show/{id}
+    defaults: { _controller: GrauchoMoviesBundle:Koszyk:show }

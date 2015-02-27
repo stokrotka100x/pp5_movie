@@ -1,0 +1,5 @@
+graucho_movies:
+    resource: "@GrauchoMoviesBundle/Resources/config/routing.yml"
+    prefix:   /GMS
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

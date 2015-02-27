@@ -1,0 +1,25 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+
+{% block header %}
+Sklep z Filmami Graucho
+{% endblock %}
+
+{% block content %}
+
+<!-- czêsto wypo¿yczane 'movies' => $movies-->
+<!-- wszystkie -->
+
+	<table class="table">
+	{% for row in movies|batch(3) %}
+		<tr>
+			{% for column in row %}
+				<td>
+				<a href="{{path('graucho_movies_movie', {'id': column.id})}}">{{ column.name }}</a><br>
+				{% set img = 'bundles/grauchomovies/images/' ~ column.img %}
+				<a href="{{path('graucho_movies_movie', {'id': column.id})}}"><img class="img-thumbnail" src={{ asset(img)}}></a> 
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}		

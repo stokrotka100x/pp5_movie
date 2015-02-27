@@ -1,0 +1,26 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+
+{% block header %}
+	Filmy {{cat}}
+{% endblock %}
+
+{% block content %}
+		
+	<!-- movies list from db. by gerne-->
+	<table class="table">
+	{% set items = movies %}
+	{% for row in movies|batch(3) %}
+		<tr>
+			{% for column in row %}
+				<td>
+				{% set img = 'bundles/grauchomovies/images/' ~ column.img %}
+				{% set id = column.id %}
+				<a href="{{path('graucho_movies_movie', {'id': id})}}">{{ column.name }}</a><br>
+				<a href="{{path('graucho_movies_movie', {'id': id})}}"><img class="img-thumbnail" src={{ asset(img)}}></a> 
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+	</table>
+
+{% endblock %}
