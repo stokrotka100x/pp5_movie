@@ -1,0 +1,29 @@
+{% extends "GrauchoMoviesBundle::layout.html.twig" %}
+
+{% block header %}
+	Rejestracja
+{% endblock %}
+
+{% block menu %}
+	<ul class="list-group">
+		<li class="list-group-item"><a href="{{path('graucho_movies_homepage')}}"><span class="glyphicon glyphicon-home"></span> Strona Główna</a></span></li>
+		<li class="list-group-item"><img src="{{asset('bundles/grauchomovies/adv/01.jpg')}}" height="165" width="320"></li>
+	</ul>
+{% endblock %}
+
+{% block content %}
+	<div class="col-md-8 jumbotron">
+		<h2>Rejestracja</h2>
+<!--	<form accept-charset="UTF-8" action="/" class="form" method="get">
+			<div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"></div>
+			<div class="form-group col-md-8">
+				<input class="form-control" type="text" name="login" placeholder="Login">
+				<input class="form-control" type="password" name="password" placeholder="Hasło">
+				<input class="btn btn-large btn-primary" name="commit" value="Zarejestruj" type="submit">
+			</div>
+		</form>
+-->
+{% include "/register" %}
+		<div class="col-md-12" style="margin-top:20px;"></div>
+	</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+{% set zamowienia = app.session.get('filmy') %}
+{% block header %}
+	Koszyk
+{% endblock %}
+{% block content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<p class="panel-title">Koszyk użytkownika: {{ app.security.getToken().getUser() }}</p>
+		</div>
+		<div class="panel-body">
+			{% if zamowienia|length == 0 %}
+				<div class="alert alert-info" role="alert"><b>Koszyk pusty</b></div>
+			{% else %}
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Akcja</th>
+							<th>Tytuł</th>
+							<th>Użytkownik</th>
+							<th>Data zamówienia</th>
+							<th>Usuń</th>
+						</tr>
+					</thead>
+					<tbody>
+{% for zamowienie in zamowienia %}
+		<tr>
+	{% if is_granted('ROLE_USER') %}
+		{% if zamowienie.isDone == 0 %}
+			<td><a href="{{path('graucho_movies_koszyk_show', {'id': zamowienie.id})}}" class="btn btn-primary">Oglądaj</a></td>
+		{% else %}
+			<td><a href="{{path('graucho_movies_koszyk_pay', {'id': zamowienie.movie})}}" class="btn btn-primary">Zapłać</a></td>
+		{% endif %}
+	{% else %}
+			<td><b class="alert">Tylko dla zalogowanych</b></td>
+	{% endif %}
+			<td><a href="{{path('graucho_movies_movie', {'id': zamowienie.movie})}}">{{ zamowienie.tytul }}</a></td>
+			<td>{{ zamowienie.autor }}</td>
+			<td>{{ zamowienie.dataUtworzenia|date("m/d/Y")}}</td>
+			<td><a href="{{path('graucho_movies_koszyk_remove', {'id': zamowienie.movie})}}" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></a></td>
+		</tr>	
+{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

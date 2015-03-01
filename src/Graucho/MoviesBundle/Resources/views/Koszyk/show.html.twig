@@ -1,0 +1,27 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+
+{% block header %}
+	{{movie[0].name}}
+{% endblock %}
+
+{% block content %}
+	
+	{% set img = 'bundles/grauchomovies/images/' ~ movie[0].img %}
+
+<div class="container">
+	<div class="page-header"><h2 style="display: inline-block;">{{movie[0].name}} </h2><span>     ({{movie[0].data|date('Y-m-d')}})</span>
+	</div>
+	<div class="col-md-4">
+		<div class="row">
+	{% if is_granted('ROLE_USER') %}
+			<iframe width="728" scrolling="no" height="410" frameborder="0" marginheight="0" marginwidth="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" 
+			src={{movie[0].source}}></iframe>
+	{% endif %}
+		</div>
+		<div class="page-header" >	
+			Aktorzy:<br> {{movie[0].aktorzy}}<br>
+			Cena:    {{movie[0].value}} PLN
+		</div>
+	</div>
+</div>
+{% endblock %}
