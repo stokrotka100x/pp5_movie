@@ -1,0 +1,23 @@
+Graucho\MoviesBundle\Entity\Recenzja:
+    type:  entity
+    table: recenzja
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        tytul:
+            type: string
+            length: 255
+        tresc:
+            type: string
+            length: 255
+        autor:
+            type: string
+            length: 255
+        dataUtworzenia:
+            type: datetime
+            column: data_utworzenia
+        movie:
+            type: integer

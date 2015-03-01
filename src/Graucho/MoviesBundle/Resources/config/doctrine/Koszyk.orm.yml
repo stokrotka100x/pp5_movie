@@ -1,0 +1,27 @@
+Graucho\MoviesBundle\Entity\Koszyk:
+    type:  entity
+    table: koszyk
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        tytul:
+            type: string
+            length: 255
+        cena:
+            type: integer
+            length: 255
+        autor:
+            type: string
+            length: 255
+        dataUtworzenia:
+            type: datetime
+            column: data_utworzenia
+        movie:
+            type: integer
+            column: movie_id
+        isDone:
+            type: integer
+            column: done
