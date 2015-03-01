@@ -1,0 +1,40 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+
+{% block header %}
+	Recenzja numer {{recenzja.id}}
+{% endblock %}
+{% block content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h2 class="panel-title">{{ recenzja.tytul }}</h2>
+		</div>
+		<div class="panel-body">
+			<dl class="dl-horizontal">
+				<dt>Id</dt>
+				<dd>{{ recenzja.id }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Tytuł</dt>
+				<dd>{{ recenzja.tytul }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Treść</dt>
+				<dd>{{ recenzja.tresc }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Autor</dt>
+				<dd>{{ recenzja.autor }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Film</dt>
+				<dd>{{ film[0].name }}</dd>
+			</dl>
+			<dl class="dl-horizontal">
+				<dt>Data utworzenia</dt>
+				<dd>{{ recenzja.dataUtworzenia|date("m/d/Y") }}</dd>
+			</dl>
+		</div>
+		<a href="{{path('graucho_movies_recenzja_index', {'movie': film[0].id})}}" class="btn btn-primary moja-klasa"><span class="glyphicon glyphicon-arrow-left"></span><span> Wróć do listy recenzji dla {{ film[0].name }}</span></a>
+	</div>
+	
+{% endblock %}

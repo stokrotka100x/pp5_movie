@@ -1,0 +1,54 @@
+{% extends "GrauchoMoviesBundle::bars.html.twig" %}
+
+{% block header %}
+	Lista Recenzji
+{% endblock %}
+{% block content %}
+	<div class="dropdown">
+	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	    Filmy
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	  	{% for film in movies %}
+	  		<li role="presentation" 
+		{% if (app.request.getBaseUrl ~ app.request.getPathInfo) == path('graucho_movies_recenzja_index', {'movie': film.id}) %} 
+			class="disabled"
+		{% endif %}
+		><a role="menuitem" tabindex="-1" href="{{path('graucho_movies_recenzja_index', {'movie': film.id})}}">{{ film.name }}</a></li>
+	  	{% endfor %}
+	  </ul>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h2 class="panel-title">{{ movies[movie-1].name }}</h2>
+			<a href="{{path('graucho_movies_recenzja_add', {'id': movies[movie-1].id})}}" class="btn btn-primary">Recenzuj</a>
+		</div>
+		<div class="panel-body">
+			{% if recenzje|length == 0 %}
+				<div class="alert alert-info" role="alert">Nikt jeszcze nie dodał recenzji do tego filmu. </div>
+			{% else %}
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Lp</th>
+							<th>Tytuł</th>
+							<th>Autor</th>
+							<th>Data utworzenia</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for recenzja in recenzje %}
+							<tr>
+								<td>{{ recenzja.id }}</td>
+								<td><a href="{{path('graucho_movies_recenzja_show', {'id': recenzja.id})}}">{{ recenzja.tytul }}</a></td>
+								<td>{{ recenzja.autor }}</td>
+								<td>{{ recenzja.dataUtworzenia|date("m/d/Y")}}</td>
+							</tr>	
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
